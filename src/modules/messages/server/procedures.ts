@@ -1,5 +1,6 @@
 import { inngest } from "@/inngest/client";
 import { prisma } from "@/lib/database";
+import { consumeCredits } from "@/lib/usage";
 import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
@@ -51,6 +52,24 @@ export const messagesRouter = createTRPCRouter({
           code: "NOT_FOUND",
           message: "Project not found",
         });
+      }
+
+      //TODO:FIX THE RATE LIMIT UI WHICH IS NOT SHOWING IN THE UI FOR THE CHAT, BUT THE LOGIC IS WORKING, HITTING THE RATE LIMIT, REDIRECT TO THE PRICING PAGE.
+
+      try {
+        await consumeCredits();
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Something went wrong",
+          });
+        } else {
+          throw new TRPCError({
+            code: "TOO_MANY_REQUESTS",
+            message: "You have run out of credits",
+          });
+        }
       }
 
       const createdMessage = await prisma.message.create({

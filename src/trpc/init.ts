@@ -39,3 +39,5 @@ export const createTRPCRouter = t.router;
 export const createCallerFactory = t.createCallerFactory;
 export const baseProcedure = t.procedure;
 export const protectedProcedure = t.procedure.use(isAuthed);
+
+//TODO: ADD Usage Procedure Here for better protection.
