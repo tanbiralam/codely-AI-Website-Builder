@@ -1,11 +1,11 @@
-- [ ] **Fix Rate Limit UI**
+- [x] **Fix Rate Limit UI**
   - The rate limit logic is working correctly (user is being redirected to the pricing page when the limit is hit).
   - However, the **UI for showing the rate limit warning/credits remaining is not rendering in the chat interface**.
   - Ensure the `Usage` component (or equivalent) is properly mounted in the chat UI.
   - Verify that props (`points`, `msBeforeNext`) are being passed down correctly.
   - Make the "Upgrade" button visible alongside the rate limit message.
   - Test by simulating hitting the free credit limit:
-    - [ ] UI should display remaining credits = `0`
-    - [ ] Show "Resets in X time" message
-    - [ ] Show **Upgrade** button
-    - [ ] Redirect should still work as fallback
+    - [x] UI should display remaining credits = `0`
+    - [x] Show "Resets in X time" message
+    - [x] Show **Upgrade** button
+    - [x] Redirect should still work as fallback
