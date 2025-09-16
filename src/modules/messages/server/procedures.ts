@@ -54,8 +54,6 @@ export const messagesRouter = createTRPCRouter({
         });
       }
 
-      //TODO:FIX THE RATE LIMIT UI WHICH IS NOT SHOWING IN THE UI FOR THE CHAT, BUT THE LOGIC IS WORKING, HITTING THE RATE LIMIT, REDIRECT TO THE PRICING PAGE.
-
       try {
         await consumeCredits();
       } catch (error) {
