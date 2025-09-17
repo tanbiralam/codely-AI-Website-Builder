@@ -18,6 +18,7 @@ import {
 import { z } from "zod";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 import { prisma } from "@/lib/database";
+import { SANDBOX_TIMEOUT } from "./types";
 
 interface AgentState {
   summary: string;
@@ -30,6 +31,7 @@ export const devAgent = inngest.createFunction(
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("vibe-dev-next-js-test-20");
+      await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });
 
@@ -44,8 +46,9 @@ export const devAgent = inngest.createFunction(
             projectId: event.data.projectId,
           },
           orderBy: {
-            createdAt: "desc", //TODO: Change to ASC if AI doesn't understand
+            createdAt: "desc",
           },
+          take: 5,
         });
 
         //TODO: Add message index tracking for better context
@@ -57,7 +60,7 @@ export const devAgent = inngest.createFunction(
           });
         }
 
-        return formattedMessages;
+        return formattedMessages.reverse();
       }
     );
 
