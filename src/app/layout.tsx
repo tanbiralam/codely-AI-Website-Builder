@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Linea",
-  description: "Linea AI | Coding Assistant",
+  title: "Codely",
+  description: "Codely AI | Coding Assistant",
 };
 
 export default function RootLayout({
