@@ -135,9 +135,3 @@ Contributions are welcome — open issues or PRs for bug fixes, improvements, or
 ## License
 
 This repository does not currently include a license file. Add an appropriate `LICENSE` if you plan to open-source or share the project.
-
-## Contact
-
-Repo: https://github.com/tanbiralam/vibe-coding
-
-If you'd like help creating a polished portfolio screenshot, adding a `project-card` component to your portfolio site, or generating a deployment-ready Vercel configuration, tell me what you'd like next.
